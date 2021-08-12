@@ -1,0 +1,114 @@
+.wpbt-checkbox-wrapper {
+	height: 200px;
+	overflow: auto;
+	padding-left: 4;
+
+	> .components-base-control {
+		margin-bottom: 5px;
+	}
+}
+
+.wpbt-search-input {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+
+	input {
+		width: 100%;
+	}
+}
+
+.wpbt-sortable-posts-control {
+	position: relative;
+
+	&__list {
+		border: solid 1px lightgray;
+		border-radius: 3px;
+		padding: 5px;
+		height: 200px;
+		overflow-y: scroll;
+		margin-top: 3px;
+	}
+
+	&__option {
+		cursor: pointer;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		margin-bottom: 1px;
+		display: block;
+		width: 100%;
+		background-color: #fff;
+		color: #000;
+		border: none;
+		text-align: left;
+
+		&.is-selected {
+			background-color: hsl(0, 0%, 90%);
+		}
+	}
+
+	&__sortable-list {
+		position: relative;
+	}
+
+	&__sortable-item {
+		position: relative;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		cursor: move;
+		user-select: none;
+
+		&:hover {
+			.wpbt-sortable-posts-control__sortable-remove {
+				visibility: visible;
+			}
+		}
+
+		// Prevent "remove" buttons from showing while dragging
+		&[style*=":"] {
+			.wpbt-sortable-posts-control__sortable-remove {
+				visibility: hidden;
+			}
+		}
+	}
+
+	&__sortable-remove {
+		position: absolute;
+		top: 50%;
+		right: 5px;
+		transform: translateY(-50%);
+		background-color: black;
+		border-radius: 50%;
+		width: 18px;
+		height: 18px;
+		z-index: 2;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		visibility: hidden;
+
+		&::after {
+			content: "";
+			background-color: white;
+			width: 8px;
+			height: 3px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	&__subtitle {
+		margin-top: 10px;
+		margin-bottom: 3px;
+		opacity: 0.5;
+		font-weight: 400;
+	}
+
+	&__search {
+		margin-bottom: 2px;
+		width: 100%;
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"name": "@evermade/wp-block-toolkit",
+	"version": "0.1.0",
+	"description": "Toolkit for developing WordPress Gutenberg blocks.",
+	"main": "build/index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/evermade/wp-block-toolkit.git"
+	},
+	"keywords": [
+		"wordpress",
+		"gutenberg",
+		"react"
+	],
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update",
+		"prepare": "wp-scripts build"
+	},
+	"author": "Timo Sundvik",
+	"license": "GPL-2.0-or-later",
+	"bugs": {
+		"url": "https://github.com/evermade/wp-block-toolkit/issues"
+	},
+	"peerDependencies": {
+		"@wordpress/block-editor": "^7.0.0",
+		"@wordpress/blocks": "^11.0.0",
+		"@wordpress/i18n": "^4.2.1"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^17.1.0"
+	},
+	"dependencies": {
+		"react-sortable-hoc": "^2.0.0"
+	},
+	"homepage": "https://github.com/evermade/wp-block-toolkit#readme",
+	"publishConfig": {
+		"access": "public"
+	}
+}
