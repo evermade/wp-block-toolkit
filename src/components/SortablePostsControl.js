@@ -23,7 +23,9 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 	const [query, setQuery] = useState("");
 
 	useEffect(() => {
-		setOptions(posts.map(postToControlOption));
+		if (posts) {
+			setOptions(posts.map(postToControlOption));
+		}
 	}, [posts]);
 
 	useEffect(() => {

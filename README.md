@@ -113,9 +113,13 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 0.3.0
+
+- Added a safety check around SortablePostsControl's setOptions
+
 ### 0.2.0
 
-- Added an safety check around PostControl's setOptions.
+- Added an safety check around PostControl's setOptions
 
 ### 0.1.0
 
