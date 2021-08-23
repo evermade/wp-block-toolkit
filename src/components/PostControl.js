@@ -13,7 +13,9 @@ const PostControl = ({ label, posts, value, onChange }) => {
 	const [options, setOptions] = useState([]);
 
 	useEffect(() => {
-		setOptions(posts.map(postToControlOption));
+		if (posts) {
+			setOptions(posts.map(postToControlOption));
+		}
 	}, [posts]);
 
 	if (typeof posts === null) return <Spinner />;

@@ -113,6 +113,10 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 0.2.0
+
+- Added an safety check around PostControl's setOptions.
+
 ### 0.1.0
 
 - Initial release
