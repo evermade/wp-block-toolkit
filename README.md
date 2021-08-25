@@ -113,6 +113,11 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 0.4.0
+
+- Updated npm packages
+- Changed named imports from config.json to default imports, as warned by webpack
+
 ### 0.3.0
 
 - Added a safety check around SortablePostsControl's setOptions

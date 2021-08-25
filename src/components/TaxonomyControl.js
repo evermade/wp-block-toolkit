@@ -8,7 +8,7 @@ import { useState, useEffect } from "@wordpress/element";
 /**
  * Internal dependencies
  */
-import { textdomain } from "../config.json";
+import config from "../config.json";
 
 const TaxonomyControl = ({ label, taxonomies, value, onChange }) => {
 	const [query, setQuery] = useState("");
@@ -58,6 +58,8 @@ const TaxonomyControl = ({ label, taxonomies, value, onChange }) => {
 export default TaxonomyControl;
 
 const SearchInput = ({ value, onChange }) => {
+	const { textdomain } = config;
+
 	return (
 		<div className="wpbt-search-input">
 			<input

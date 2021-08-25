@@ -9,9 +9,11 @@ import { Fragment } from "@wordpress/element";
  */
 import InlineNotice from "./InlineNotice";
 import { useRequiredBlocks } from "../hooks/use-required-blocks";
-import { textdomain } from "../config.json";
+import config from "../config.json";
 
 const RequireBlocks = ({ children, blocks }) => {
+	const { textdomain } = config;
+
 	const { hasRequiredBlocks, missingBlocks } = useRequiredBlocks(blocks);
 
 	return (

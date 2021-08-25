@@ -14,10 +14,12 @@ import { BaseControl, Spinner } from "@wordpress/components";
 /**
  * Internal dependencies
  */
-import { textdomain } from "../config.json";
+import config from "../config.json";
 import { arrayMove, postToControlOption } from "../utils";
 
 const SortablePostsControl = ({ label, posts, value, onChange }) => {
+	const { textdomain } = config;
+
 	const [options, setOptions] = useState([]);
 	const [filteredOptions, setFilteredOptions] = useState([]);
 	const [query, setQuery] = useState("");

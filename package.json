@@ -1,6 +1,6 @@
 {
 	"name": "@evermade/wp-block-toolkit",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Toolkit for developing WordPress Gutenberg blocks.",
 	"main": "build/index.js",
 	"repository": {
@@ -32,7 +32,7 @@
 		"@wordpress/i18n": "^4.2.1"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^17.1.0"
+		"@wordpress/scripts": "^18.0.0"
 	},
 	"dependencies": {
 		"react-sortable-hoc": "^2.0.0"
