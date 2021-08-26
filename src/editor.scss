@@ -1,3 +1,27 @@
+.wpbt-inline-notice {
+	padding: 20px;
+	background-color: #f8f8f8;
+	border-style: dashed;
+	border-width: 2px;
+	border-color: #eee;
+	width: 100%;
+
+	&.is-warning {
+		background-color: #fef8ee;
+		border-color: #f0b849;
+	}
+
+	&.is-error {
+		background-color: #fce8e9;
+		border-color: #c72629;
+	}
+
+	&.is-size-small {
+		padding: 10px;
+		border-width: 1px;
+	}
+}
+
 .wpbt-checkbox-wrapper {
 	height: 200px;
 	overflow: auto;

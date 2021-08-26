@@ -17,7 +17,7 @@ Compliments the base WordPress notice system by allowing you to show either warn
 ![InlineNotice example](assets/InlineNotice-screenshot-01.png)
 
 ```javascript
-<InlineNotice level="error">
+<InlineNotice status="error">
 	<strong>Error: </strong> Lorem ipsum dolor sit amet.
 </InlineNotice>
 ```
@@ -112,6 +112,13 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 ```
 
 ## Changelog
+
+### 1.0.0
+
+- Breaking changes
+- Changed InlineNotice `level` prop to `status` to be in line with core Notice component
+- In order to support using InlineNotice on server side rendering, moved InlineNotice styles to Sass
+- Added size option to InlineNotice
 
 ### 0.4.0
 

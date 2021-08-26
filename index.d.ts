@@ -6,7 +6,8 @@ type BlockNames = string[];
  * Components
  */
 export const InlineNotice: React.FC<{
-	level: "warning" | "error";
+	status: "warning" | "error";
+	size: "regular" | "small";
 }> = props;
 
 export const PostControl: React.FC<{
