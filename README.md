@@ -113,6 +113,10 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.1
+
+- Make InlineNotice paddings a bit nicer.
+
 ### 1.0.0
 
 - Breaking changes
