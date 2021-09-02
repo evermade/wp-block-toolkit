@@ -5,6 +5,6 @@ export const arrayMove = (array, from, to) => {
 };
 
 export const postToControlOption = (post) => ({
-	label: post.title.rendered,
+	label: post.title.raw,
 	value: post.id,
 });

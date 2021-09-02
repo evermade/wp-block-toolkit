@@ -113,6 +113,10 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.2
+
+- Use raw instead of rendered title to avoid issues with special characters in post control option
+
 ### 1.0.1
 
 - Make InlineNotice paddings a bit nicer.
