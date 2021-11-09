@@ -21,7 +21,7 @@ const RequireBlocks = ({ children, blocks }) => {
 			{hasRequiredBlocks ? (
 				children
 			) : (
-				<InlineNotice level="error">
+				<InlineNotice status="error">
 					{__(
 						"Couldn't find all the required blocks. Please install and activate the following blocks: ",
 						textdomain
