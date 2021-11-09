@@ -1,6 +1,6 @@
 {
 	"name": "@evermade/wp-block-toolkit",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Toolkit for developing WordPress Gutenberg blocks.",
 	"main": "build/index.js",
 	"repository": {
@@ -27,12 +27,12 @@
 		"url": "https://github.com/evermade/wp-block-toolkit/issues"
 	},
 	"peerDependencies": {
-		"@wordpress/block-editor": "^7.0.0",
-		"@wordpress/blocks": "^11.0.0",
-		"@wordpress/i18n": "^4.2.1"
+		"@wordpress/block-editor": "^8.0.0",
+		"@wordpress/blocks": "^11.1.3",
+		"@wordpress/i18n": "^4.2.3"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^18.0.0"
+		"@wordpress/scripts": "^19.1.0"
 	},
 	"dependencies": {
 		"react-sortable-hoc": "^2.0.0"

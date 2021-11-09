@@ -113,6 +113,11 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.3
+
+- Updated npm packages
+- Fixed incorrect InlineNotice prop in RequireBlocks component
+
 ### 1.0.2
 
 - Use raw instead of rendered title to avoid issues with special characters in post control option
