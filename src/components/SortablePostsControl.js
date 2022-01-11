@@ -115,10 +115,10 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 };
 
 const SortableItem = SortableElement(({ value, onRemove }) => (
-	<div class="wpbt-sortable-posts-control__sortable-item">
+	<div className="wpbt-sortable-posts-control__sortable-item">
 		<span>{value.label}</span>
 		<div
-			class="wpbt-sortable-posts-control__sortable-remove"
+			className="wpbt-sortable-posts-control__sortable-remove"
 			onClick={() => onRemove(value)}
 		/>
 	</div>
@@ -126,7 +126,7 @@ const SortableItem = SortableElement(({ value, onRemove }) => (
 
 const SortableList = SortableContainer(({ items, onItemRemove }) => {
 	return (
-		<div class="wpbt-sortable-posts-control__sortable-list">
+		<div className="wpbt-sortable-posts-control__sortable-list">
 			{items.map((item, index) => (
 				<SortableItem
 					key={`item-${item.value}`}

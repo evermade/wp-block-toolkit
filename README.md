@@ -113,6 +113,10 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.4
+
+- Fixed a class bug in SortablePostsControl component
+
 ### 1.0.3
 
 - Updated npm packages
