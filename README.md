@@ -113,6 +113,11 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.5
+
+- Fixed a bug with special characters in TaxonomyControl
+- Fixed a bug where TaxonomyControl would crash on a null value
+
 ### 1.0.4
 
 - Fixed a class bug in SortablePostsControl component

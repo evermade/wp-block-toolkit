@@ -29,6 +29,10 @@
 
 	> .components-base-control {
 		margin-bottom: 5px;
+
+		.components-checkbox-control__label > div {
+			display: inline;
+		}
 	}
 }
 

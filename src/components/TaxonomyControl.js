@@ -3,7 +3,7 @@
  */
 import { __ } from "@wordpress/i18n";
 import { CheckboxControl, Spinner, BaseControl } from "@wordpress/components";
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect, RawHTML } from "@wordpress/element";
 
 /**
  * Internal dependencies
@@ -42,14 +42,15 @@ const TaxonomyControl = ({ label, taxonomies, value, onChange }) => {
 				onChange={(event) => setQuery(event.target.value)}
 			/>
 			<CheckboxWrapper>
-				{filteredTaxonomies.map(({ id, name }) => (
-					<CheckboxControl
-						key={id}
-						label={name}
-						checked={value.includes(id)}
-						onChange={(checked) => handleClick(id, checked)}
-					/>
-				))}
+				{!!filteredTaxonomies &&
+					filteredTaxonomies.map(({ id, name }) => (
+						<CheckboxControl
+							key={id}
+							label={<RawHTML>{name}</RawHTML>}
+							checked={value.includes(id)}
+							onChange={(checked) => handleClick(id, checked)}
+						/>
+					))}
 			</CheckboxWrapper>
 		</BaseControl>
 	);
