@@ -113,6 +113,11 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 1.0.6
+
+- Fixed padding and margin issues with PostControl's ComboboxControl when used within the editor
+- Added a CSS targetable parent to PostControl
+
 ### 1.0.5
 
 - Fixed a bug with special characters in TaxonomyControl

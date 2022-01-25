@@ -21,13 +21,19 @@ const PostControl = ({ label, posts, value, onChange }) => {
 	if (typeof posts === null) return <Spinner />;
 
 	return (
-		<ComboboxControl
-			label={label}
-			value={value}
-			onChange={onChange}
-			options={options}
-		/>
+		<ComboboxWrapper>
+			<ComboboxControl
+				label={label}
+				value={value}
+				onChange={onChange}
+				options={options}
+			/>
+		</ComboboxWrapper>
 	);
 };
 
 export default PostControl;
+
+const ComboboxWrapper = ({ children }) => {
+	return <div className="wpbt-combobox-wrapper">{children}</div>;
+};
