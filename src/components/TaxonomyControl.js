@@ -26,7 +26,7 @@ const TaxonomyControl = ( { label, taxonomies, value, onChange } ) => {
 		}
 	}, [ taxonomies, query ] );
 
-	if ( typeof taxonomies === null ) return <Spinner />;
+	if ( taxonomies === null ) return <Spinner />;
 
 	const handleClick = ( id, checked ) => {
 		if ( checked ) {

@@ -40,7 +40,7 @@ const SortablePostsControl = ( { label, posts, value, onChange } ) => {
 		setFilteredOptions( newFilteredOptions );
 	}, [ options, query ] );
 
-	if ( typeof posts === null ) return <Spinner />;
+	if ( posts === null ) return <Spinner />;
 
 	if ( ! options || ! options.length ) return null;
 

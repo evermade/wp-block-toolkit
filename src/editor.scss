@@ -57,7 +57,7 @@
 	position: relative;
 
 	&__list {
-		border: solid 1px lightgray;
+		border: solid 1px #d3d3d3;
 		border-radius: 3px;
 		padding: 5px;
 		height: 200px;
@@ -112,7 +112,7 @@
 		top: 50%;
 		right: 5px;
 		transform: translateY(-50%);
-		background-color: black;
+		background-color: #000;
 		border-radius: 50%;
 		width: 18px;
 		height: 18px;
@@ -125,7 +125,7 @@
 
 		&::after {
 			content: "";
-			background-color: white;
+			background-color: #fff;
 			width: 8px;
 			height: 3px;
 			position: absolute;

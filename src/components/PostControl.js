@@ -18,7 +18,7 @@ const PostControl = ( { label, posts, value, onChange } ) => {
 		}
 	}, [ posts ] );
 
-	if ( typeof posts === null ) return <Spinner />;
+	if ( posts === null ) return <Spinner />;
 
 	return (
 		<ComboboxWrapper>
