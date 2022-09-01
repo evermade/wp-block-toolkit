@@ -113,6 +113,14 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 2.0.0
+
+- Breaking change: Updated @wordpress/scripts to [24.0.0](https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/CHANGELOG.md#2400-2022-08-24)
+  - 4 major bumps!
+  - Increased the minimum Node.js version to 14 and npm to 6.14.4
+  - Many major dependency bumps
+- Updated npm dependencies
+
 ### 1.0.6
 
 - Fixed padding and margin issues with PostControl's ComboboxControl when used within the editor

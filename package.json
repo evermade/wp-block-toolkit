@@ -1,6 +1,6 @@
 {
 	"name": "@evermade/wp-block-toolkit",
-	"version": "1.0.6",
+	"version": "2.0.0",
 	"description": "Toolkit for developing WordPress Gutenberg blocks.",
 	"main": "build/index.js",
 	"repository": {
