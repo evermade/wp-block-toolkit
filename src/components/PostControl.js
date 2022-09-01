@@ -1,32 +1,32 @@
 /**
  * WordPress dependencies
  */
-import { ComboboxControl, Spinner } from "@wordpress/components";
-import { useState, useEffect } from "@wordpress/element";
+import { ComboboxControl, Spinner } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
-import { postToControlOption } from "../utils";
+import { postToControlOption } from '../utils';
 
-const PostControl = ({ label, posts, value, onChange }) => {
-	const [options, setOptions] = useState([]);
+const PostControl = ( { label, posts, value, onChange } ) => {
+	const [ options, setOptions ] = useState( [] );
 
-	useEffect(() => {
-		if (posts) {
-			setOptions(posts.map(postToControlOption));
+	useEffect( () => {
+		if ( posts ) {
+			setOptions( posts.map( postToControlOption ) );
 		}
-	}, [posts]);
+	}, [ posts ] );
 
-	if (typeof posts === null) return <Spinner />;
+	if ( typeof posts === null ) return <Spinner />;
 
 	return (
 		<ComboboxWrapper>
 			<ComboboxControl
-				label={label}
-				value={value}
-				onChange={onChange}
-				options={options}
+				label={ label }
+				value={ value }
+				onChange={ onChange }
+				options={ options }
 			/>
 		</ComboboxWrapper>
 	);
@@ -34,6 +34,6 @@ const PostControl = ({ label, posts, value, onChange }) => {
 
 export default PostControl;
 
-const ComboboxWrapper = ({ children }) => {
-	return <div className="wpbt-combobox-wrapper">{children}</div>;
+const ComboboxWrapper = ( { children } ) => {
+	return <div className="wpbt-combobox-wrapper">{ children }</div>;
 };

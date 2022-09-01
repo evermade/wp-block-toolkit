@@ -1,18 +1,18 @@
 /**
  * WordPress dependencies
  */
-import { useSelect } from "@wordpress/data";
+import { useSelect } from '@wordpress/data';
 
-export function useAllPosts(postType) {
+export function useAllPosts( postType ) {
 	const posts = useSelect(
-		(select) =>
-			select("core").getEntityRecords("postType", postType, {
+		( select ) =>
+			select( 'core' ).getEntityRecords( 'postType', postType, {
 				per_page: -1,
-				orderby: "title",
-				order: "asc",
-				status: "publish",
-			}),
-		[postType]
+				orderby: 'title',
+				order: 'asc',
+				status: 'publish',
+			} ),
+		[ postType ]
 	);
 
 	return posts;

@@ -1,56 +1,59 @@
 /**
  * WordPress dependencies
  */
-import { __ } from "@wordpress/i18n";
-import { CheckboxControl, Spinner, BaseControl } from "@wordpress/components";
-import { useState, useEffect, RawHTML } from "@wordpress/element";
+import { __ } from '@wordpress/i18n';
+import { CheckboxControl, Spinner, BaseControl } from '@wordpress/components';
+import { useState, useEffect, RawHTML } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
-import config from "../config.json";
+import config from '../config.json';
 
-const TaxonomyControl = ({ label, taxonomies, value, onChange }) => {
-	const [query, setQuery] = useState("");
-	const [filteredTaxonomies, setFilteredTaxonomies] = useState(taxonomies);
+const TaxonomyControl = ( { label, taxonomies, value, onChange } ) => {
+	const [ query, setQuery ] = useState( '' );
+	const [ filteredTaxonomies, setFilteredTaxonomies ] =
+		useState( taxonomies );
 
-	useEffect(() => {
-		if (taxonomies) {
+	useEffect( () => {
+		if ( taxonomies ) {
 			const newTaxonomies = query
-				? taxonomies.filter(({ name }) =>
-						name.toLowerCase().includes(query.toLowerCase())
+				? taxonomies.filter( ( { name } ) =>
+						name.toLowerCase().includes( query.toLowerCase() )
 				  )
 				: taxonomies;
-			setFilteredTaxonomies(newTaxonomies);
+			setFilteredTaxonomies( newTaxonomies );
 		}
-	}, [taxonomies, query]);
+	}, [ taxonomies, query ] );
 
-	if (typeof taxonomies === null) return <Spinner />;
+	if ( typeof taxonomies === null ) return <Spinner />;
 
-	const handleClick = (id, checked) => {
-		if (checked) {
-			onChange([...value, id]);
+	const handleClick = ( id, checked ) => {
+		if ( checked ) {
+			onChange( [ ...value, id ] );
 		} else {
-			onChange(value.filter((each) => each !== id));
+			onChange( value.filter( ( each ) => each !== id ) );
 		}
 	};
 
 	return (
-		<BaseControl label={label}>
+		<BaseControl label={ label }>
 			<SearchInput
-				value={query}
-				onChange={(event) => setQuery(event.target.value)}
+				value={ query }
+				onChange={ ( event ) => setQuery( event.target.value ) }
 			/>
 			<CheckboxWrapper>
-				{!!filteredTaxonomies &&
-					filteredTaxonomies.map(({ id, name }) => (
+				{ !! filteredTaxonomies &&
+					filteredTaxonomies.map( ( { id, name } ) => (
 						<CheckboxControl
-							key={id}
-							label={<RawHTML>{name}</RawHTML>}
-							checked={value.includes(id)}
-							onChange={(checked) => handleClick(id, checked)}
+							key={ id }
+							label={ <RawHTML>{ name }</RawHTML> }
+							checked={ value.includes( id ) }
+							onChange={ ( checked ) =>
+								handleClick( id, checked )
+							}
 						/>
-					))}
+					) ) }
 			</CheckboxWrapper>
 		</BaseControl>
 	);
@@ -58,21 +61,21 @@ const TaxonomyControl = ({ label, taxonomies, value, onChange }) => {
 
 export default TaxonomyControl;
 
-const SearchInput = ({ value, onChange }) => {
+const SearchInput = ( { value, onChange } ) => {
 	const { textdomain } = config;
 
 	return (
 		<div className="wpbt-search-input">
 			<input
 				type="text"
-				placeholder={__("Search", textdomain)}
-				value={value}
-				onChange={onChange}
+				placeholder={ __( 'Search', textdomain ) }
+				value={ value }
+				onChange={ onChange }
 			/>
 		</div>
 	);
 };
 
-const CheckboxWrapper = ({ children }) => {
-	return <div className="wpbt-checkbox-wrapper">{children}</div>;
+const CheckboxWrapper = ( { children } ) => {
+	return <div className="wpbt-checkbox-wrapper">{ children }</div>;
 };

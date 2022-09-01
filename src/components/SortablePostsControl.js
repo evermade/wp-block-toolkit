@@ -1,142 +1,146 @@
 /**
  * External dependencies
  */
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import classnames from "classnames";
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import classnames from 'classnames';
 
 /**
  * WordPress dependencies
  */
-import { __ } from "@wordpress/i18n";
-import { useState, useEffect } from "@wordpress/element";
-import { BaseControl, Spinner } from "@wordpress/components";
+import { __ } from '@wordpress/i18n';
+import { useState, useEffect } from '@wordpress/element';
+import { BaseControl, Spinner } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
-import config from "../config.json";
-import { arrayMove, postToControlOption } from "../utils";
+import config from '../config.json';
+import { arrayMove, postToControlOption } from '../utils';
 
-const SortablePostsControl = ({ label, posts, value, onChange }) => {
+const SortablePostsControl = ( { label, posts, value, onChange } ) => {
 	const { textdomain } = config;
 
-	const [options, setOptions] = useState([]);
-	const [filteredOptions, setFilteredOptions] = useState([]);
-	const [query, setQuery] = useState("");
+	const [ options, setOptions ] = useState( [] );
+	const [ filteredOptions, setFilteredOptions ] = useState( [] );
+	const [ query, setQuery ] = useState( '' );
 
-	useEffect(() => {
-		if (posts) {
-			setOptions(posts.map(postToControlOption));
+	useEffect( () => {
+		if ( posts ) {
+			setOptions( posts.map( postToControlOption ) );
 		}
-	}, [posts]);
+	}, [ posts ] );
 
-	useEffect(() => {
+	useEffect( () => {
 		const newFilteredOptions = query
-			? options.filter((each) =>
-					each.label.toLowerCase().includes(query.toLowerCase())
+			? options.filter( ( each ) =>
+					each.label.toLowerCase().includes( query.toLowerCase() )
 			  )
 			: options;
 
-		setFilteredOptions(newFilteredOptions);
-	}, [options, query]);
+		setFilteredOptions( newFilteredOptions );
+	}, [ options, query ] );
 
-	if (typeof posts === null) return <Spinner />;
+	if ( typeof posts === null ) return <Spinner />;
 
-	if (!options || !options.length) return null;
+	if ( ! options || ! options.length ) return null;
 
-	const onOptionClick = (option, isSelected) => {
+	const onOptionClick = ( option, isSelected ) => {
 		onChange(
 			isSelected
-				? value.filter((id) => id !== option.value)
-				: [...value, option.value]
+				? value.filter( ( id ) => id !== option.value )
+				: [ ...value, option.value ]
 		);
 	};
 
-	const onSortEnd = ({ oldIndex, newIndex }) => {
-		onChange(arrayMove(value, oldIndex, newIndex));
+	const onSortEnd = ( { oldIndex, newIndex } ) => {
+		onChange( arrayMove( value, oldIndex, newIndex ) );
 	};
 
-	const onItemRemove = (option) => {
-		onChange(value.filter((id) => id !== option.value));
+	const onItemRemove = ( option ) => {
+		onChange( value.filter( ( id ) => id !== option.value ) );
 	};
 
 	return (
-		<BaseControl label={label} className="wpbt-sortable-posts-control">
+		<BaseControl label={ label } className="wpbt-sortable-posts-control">
 			<h4 className="wpbt-sortable-posts-control__subtitle">
-				{__("Select posts", textdomain)}
+				{ __( 'Select posts', textdomain ) }
 			</h4>
 
 			<input
 				type="text"
-				placeholder={__("Search", textdomain)}
-				value={query}
-				onChange={(event) => setQuery(event.target.value)}
+				placeholder={ __( 'Search', textdomain ) }
+				value={ query }
+				onChange={ ( event ) => setQuery( event.target.value ) }
 				className="wpbt-sortable-posts-control__search"
 			/>
 
 			<div className="wpbt-sortable-posts-control__list">
-				{filteredOptions.map((option, index) => {
-					const isSelected = value.find((id) => id === option.value);
+				{ filteredOptions.map( ( option, index ) => {
+					const isSelected = value.find(
+						( id ) => id === option.value
+					);
 
 					const optionClassName = classnames(
-						"wpbt-sortable-posts-control__option",
+						'wpbt-sortable-posts-control__option',
 						{
-							"is-selected": isSelected,
+							'is-selected': isSelected,
 						}
 					);
 
 					return (
 						<button
-							key={index}
-							onClick={() => onOptionClick(option, isSelected)}
-							className={optionClassName}
+							key={ index }
+							onClick={ () =>
+								onOptionClick( option, isSelected )
+							}
+							className={ optionClassName }
 						>
-							{option.label}
+							{ option.label }
 						</button>
 					);
-				})}
+				} ) }
 			</div>
 
 			<h4 className="wpbt-sortable-posts-control__subtitle">
-				{__("Select order", textdomain)}
+				{ __( 'Select order', textdomain ) }
 			</h4>
 			<div className="wpbt-sortable-posts-control__list">
 				<SortableList
-					items={value.map((id) =>
-						options.find((option) => option.value === id)
-					)}
-					onSortEnd={onSortEnd}
-					distance={5}
-					onItemRemove={onItemRemove}
+					items={ value.map( ( id ) =>
+						options.find( ( option ) => option.value === id )
+					) }
+					onSortEnd={ onSortEnd }
+					distance={ 5 }
+					onItemRemove={ onItemRemove }
 				/>
 			</div>
 		</BaseControl>
 	);
 };
 
-const SortableItem = SortableElement(({ value, onRemove }) => (
+const SortableItem = SortableElement( ( { value, onRemove } ) => (
 	<div className="wpbt-sortable-posts-control__sortable-item">
-		<span>{value.label}</span>
+		<span>{ value.label }</span>
 		<div
 			className="wpbt-sortable-posts-control__sortable-remove"
-			onClick={() => onRemove(value)}
+			onClick={ () => onRemove( value ) }
 		/>
 	</div>
-));
+) );
 
-const SortableList = SortableContainer(({ items, onItemRemove }) => {
+const SortableList = SortableContainer( ( { items, onItemRemove } ) => {
 	return (
 		<div className="wpbt-sortable-posts-control__sortable-list">
-			{items.map((item, index) => (
+			{ items.map( ( item, index ) => (
 				<SortableItem
-					key={`item-${item.value}`}
-					index={index}
-					value={item}
-					onRemove={onItemRemove}
+					key={ `item-${ item.value }` }
+					index={ index }
+					value={ item }
+					onRemove={ onItemRemove }
 				/>
-			))}
+			) ) }
 		</div>
 	);
-});
+} );
 
 export default SortablePostsControl;
