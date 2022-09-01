@@ -120,6 +120,8 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
   - Increased the minimum Node.js version to 14 and npm to 6.14.4
   - Many major dependency bumps
 - Updated npm dependencies
+- Ran code format
+- Fixed a few code lint errors
 
 ### 1.0.6
 
