@@ -113,6 +113,12 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 
 ## Changelog
 
+### 3.0.0
+
+- Breaking change: Updated @wordpress/block-editor to [10.0.0](https://github.com/WordPress/gutenberg/blob/trunk/packages/block-editor/CHANGELOG.md#1000-2022-09-13)
+  - 2 major bumps!
+- Updated npm dependencies
+
 ### 2.0.0
 
 - Breaking change: Updated @wordpress/scripts to [24.0.0](https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/CHANGELOG.md#2400-2022-08-24)
