@@ -3,15 +3,14 @@
  */
 import { useSelect } from "@wordpress/data";
 
-/**
- * Constants
- */
-const MINIMUM_SEARCH_LENGTH = 3;
-
-export function usePostSearch(postType = "post", search = "") {
+export function usePostSearch(
+	postType = "post",
+	search = "",
+	minimumLength = 3
+) {
 	const posts = useSelect(
 		(select) => {
-			if (search.length < MINIMUM_SEARCH_LENGTH) {
+			if (search.length < minimumLength) {
 				return [];
 			}
 
@@ -23,7 +22,7 @@ export function usePostSearch(postType = "post", search = "") {
 				search,
 			});
 		},
-		[postType, search]
+		[postType, search, minimumLength]
 	);
 
 	return posts;

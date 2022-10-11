@@ -24,6 +24,7 @@ const { textdomain } = config;
  * Constants
  */
 const SEARCH_DEBOUNCE_DELAY = 500;
+const SEARCH_MINIMUM_LENGTH = 3;
 
 const PostSearchControl = ({
 	type = "post",
@@ -40,7 +41,7 @@ const PostSearchControl = ({
 
 	const selected = usePost(type, value);
 
-	const posts = usePostSearch(type, debouncedSearch);
+	const posts = usePostSearch(type, debouncedSearch, SEARCH_MINIMUM_LENGTH);
 
 	const onKeyDown = (e) => {
 		if (e.key === "Escape") {
@@ -105,7 +106,7 @@ const Options = ({ options, search, renderOption }) => {
 	const isLoading = options === null;
 	const hasOptions = options && options.length > 0;
 	const hasSearch = search.length > 0;
-	const hasMinimumSearchLength = search.length >= 3;
+	const hasMinimumSearchLength = search.length >= SEARCH_MINIMUM_LENGTH;
 
 	if (!hasSearch) {
 		return null;
@@ -120,13 +121,18 @@ const Options = ({ options, search, renderOption }) => {
 	}
 
 	if (!hasOptions) {
-		return hasMinimumSearchLength ? (
-			<p>{__("No posts were found with your search.", textdomain)}</p>
-		) : (
-			<p>
-				{__("Your search needs to be at least 3 characters long.", textdomain)}
-			</p>
-		);
+		if (!hasMinimumSearchLength) {
+			return (
+				<p>
+					{__(
+						`Your search needs to be at least ${SEARCH_MINIMUM_LENGTH} characters long.`,
+						textdomain
+					)}
+				</p>
+			);
+		}
+
+		return <p>{__("No posts were found with your search.", textdomain)}</p>;
 	}
 
 	return options.map(renderOption);
