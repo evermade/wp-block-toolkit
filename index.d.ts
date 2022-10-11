@@ -35,6 +35,15 @@ export const TaxonomyControl: React.FC< {
 	onChange: ( ...args: any[] ) => any;
 } > = props;
 
+export const PostSearchControl: React.FC< {
+	type: string;
+	value: number;
+	onChange: ( ...args: any[] ) => any;
+	placeholder: string;
+	label: string;
+	inputProps: object;
+} > = props;
+
 /**
  * Hooks
  */
@@ -45,3 +54,7 @@ export function useRequiredBlocks( requiredBlocks: BlockNames ): {
 	missingBlocks: BlockNames;
 	hasRequiredBlocks: boolean;
 };
+
+export function usePost( postType: string, id: number ): any;
+
+export function usePostSearch( postType: string, search: string ): any[];
