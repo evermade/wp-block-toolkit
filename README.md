@@ -30,7 +30,7 @@ Custom ComboboxControl for selecting a single post. Takes an array of post objec
 
 ```javascript
 <PostControl
-	label={"My Label"}
+	label="My Label"
 	value={mySelectedPostId}
 	posts={myPosts}
 	onChange={(value) =>
@@ -38,6 +38,28 @@ Custom ComboboxControl for selecting a single post. Takes an array of post objec
 			mySelectedPostId: value,
 		})
 	}
+/>
+```
+
+### PostSearchControl
+
+For selecting a single post from a large pool of posts. More performant than `PostControl` at the cost of requiring additional user input.
+
+![PostSearchControl example](assets/PostSearchControl-screenshot-01.png)
+
+```javascript
+<PostSearchControl
+	label="My label"
+	placeholder="My placeholder"
+	value={mySelectedPostId}
+	onChange={(value) =>
+		setAttributes({
+			mySelectedPostId: value,
+		})
+	}
+	inputProps={{
+		autoFocus: true
+	}}
 />
 ```
 
@@ -111,7 +133,31 @@ const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
 ]);
 ```
 
+### usePost
+
+QoL wrapper for getting a single post entity using a post type and id.
+
+```javascript
+const story = usePost("story", 13);
+```
+
+### usePostSearch
+
+Similar to `useAllPosts`, except uses a search parameter for the query. Much more performant when dealing with large amounts of content.
+
+It's recommended to debounce the search string, to avoid excessive database queries.
+
+```javascript
+const loremIpsumStories = usePostSearch("story", "lorem ipsum");
+```
+
 ## Changelog
+
+### 3.1.0
+
+- Introduced a new component: PostSearchControl. It's better suited for choosing a post from a large number of posts than PostControl.
+- Introduced two new hooks: usePost and usePostSearch.
+- Updated npm dependencies
 
 ### 3.0.0
 
