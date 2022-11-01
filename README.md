@@ -49,12 +49,13 @@ For selecting a single post from a large pool of posts. More performant than `Po
 
 ```javascript
 <PostSearchControl
-	label="My label"
-	placeholder="My placeholder"
-	value={mySelectedPostId}
+	type="page"
+	label="Choose a page"
+	placeholder="Search here"
+	value={mySelectedPageId}
 	onChange={(value) =>
 		setAttributes({
-			mySelectedPostId: value,
+			mySelectedPageId: value,
 		})
 	}
 	inputProps={{
@@ -152,6 +153,11 @@ const loremIpsumStories = usePostSearch("story", "lorem ipsum");
 ```
 
 ## Changelog
+
+### 3.1.1
+
+- Fixed an issue in SortablePostsControl where `undefined` items were being added to SortableList.
+- Added `type` as a prop to the example of PostSearchControl.
 
 ### 3.1.0
 
