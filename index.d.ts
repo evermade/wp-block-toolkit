@@ -43,6 +43,7 @@ export const PostSearchControl: React.FC<{
 	label: string;
 	inputProps: object;
 	filterResults: (results: any[]) => any[];
+	numOfInitialResults: number;
 }> = props;
 
 /**

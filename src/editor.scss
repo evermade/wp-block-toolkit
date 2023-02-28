@@ -159,70 +159,74 @@
 
 .wpbt-post-search-control {
 	position: relative;
-    z-index: 2;
+	z-index: 2;
 
-    &__input {
-        width: 100%;
-        display: block;
-        border-radius: 2px;
-    }
+	&__input {
+		width: 100%;
+		display: block;
+		border-radius: 2px;
+	}
 
-    &__options {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        border: solid 1px var(--wp-admin-theme-color);
-        box-shadow: 0 0 0 1px var(--wp-admin-theme-color);
-        border-radius: 2px;
-        display: flex;
-        flex-flow: column nowrap;
-        gap: 5px;
-        max-height: 300px;
-        overflow: auto;
+	&__options {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		background-color: #fff;
+		border: solid 1px var(--wp-admin-theme-color);
+		box-shadow: 0 0 0 1px var(--wp-admin-theme-color);
+		border-radius: 2px;
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 5px;
+		max-height: 300px;
+		overflow: auto;
 
-        &:empty {
-            display: none;
-        }
+		&:empty {
+			display: none;
+		}
 
-        p {
-            padding: 10px;
-        }
-    }
+		p {
+			padding: 10px;
+		}
+	}
 
-    &__spinner {
-        padding: 10px;
-    }
+	&__spinner {
+		padding: 10px;
+	}
 
-    &__option {
-        display: block;
-        text-align: left;
-        width: 100%;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 4px 8px;
+	&__option {
+		display: block;
+		text-align: left;
+		width: 100%;
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 4px 8px;
 
-        &:hover {
-            background: var(--wp-admin-theme-color);
-            color: #fff;
-        }
-    }
+		&:hover {
+			background: var(--wp-admin-theme-color);
+			color: #fff;
+		}
+	}
 
-    &__reset {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        height: 24px;
-        min-width: 24px;
-        padding: 0;
+	&__reset {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		transform: translateY(-50%);
+		height: 24px;
+		min-width: 24px;
+		padding: 0;
 		background: #fff;
-    }
+	}
 
-    &__wrapper {
-        position: relative;
-        width: 100%;
-    }
+	&__wrapper {
+		position: relative;
+		width: 100%;
+	}
+
+	&__more {
+		margin: 3px;
+	}
 }

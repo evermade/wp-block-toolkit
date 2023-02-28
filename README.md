@@ -45,6 +45,8 @@ Custom ComboboxControl for selecting a single post. Takes an array of post objec
 
 For selecting a single post from a large pool of posts. More performant than `PostControl` at the cost of requiring additional user input.
 
+As a further performance optimization, by default shows only 20 results and a "View more results" button. You can configure the number of initial results with the `numOfInitialResults` prop, or disable the optimization completely by setting it to `-1`.
+
 ![PostSearchControl example](assets/PostSearchControl-screenshot-01.png)
 
 ```javascript
@@ -58,6 +60,7 @@ For selecting a single post from a large pool of posts. More performant than `Po
 			mySelectedPageId: value,
 		})
 	}
+	numOfInitialResults={20}
 	filterResults={(results) => {
 		// You can modify the search results before returning them.
 		return results;
@@ -150,12 +153,19 @@ Similar to `useAllPosts`, except uses a search parameter for the query. Much mor
 It's recommended to debounce the search string, to avoid excessive database queries.
 
 ```javascript
-const loremIpsumStories = usePostSearch("story", "lorem ipsum");
+const loremIpsumStories = usePostSearch({ postType: "story", search: "lorem ipsum" });
 ```
 
 ## Changelog
 
+### 4.1.0
+
+- Changed `usePostSearch` to use named arguments.
+- Optimized the performance of `PostSearchControl` by limiting the number of initial results.
+- `PostSearchControl` now also has a `numOfInitialResults` prop that can be used to configure the optimization or disable it completely with `-1`.
+
 ### 4.0.0
+
 - Breaking change: Updated @wordpress/scripts to [25.4.0](https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/CHANGELOG.md#2540-2023-02-15), which also introduces React 18.
 - Changed `react-sortable-hoc` which is no longer maintained and compatible with React 18 to `@dnd-kit/core`.
 - Added possibility to filter `PostSearchControl` results via the `filterResults` prop.

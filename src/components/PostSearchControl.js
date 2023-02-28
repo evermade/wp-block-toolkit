@@ -34,15 +34,25 @@ const PostSearchControl = ({
 	label = __("Select a post", textdomain),
 	inputProps = {},
 	filterResults = null,
+	numOfInitialResults = 20,
 	...rest
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [search, setSearch] = useState("");
 	const [debouncedSearch] = useDebounce(search, SEARCH_DEBOUNCE_DELAY);
+	const [perPage, setPerPage] = useState(numOfInitialResults);
+	const [isLoadingMore, setIsLoadingMore] = useState(false);
 
 	const selected = usePost(type, value);
 
-	const posts = usePostSearch(type, debouncedSearch, SEARCH_MINIMUM_LENGTH);
+	const posts = usePostSearch({
+		postType: type,
+		search: debouncedSearch,
+		minimumLength: SEARCH_MINIMUM_LENGTH,
+		perPage,
+	});
+
+	const maybeHasMorePosts = posts?.length === numOfInitialResults;
 
 	const filteredPosts = filterResults ? filterResults(posts) : posts;
 
@@ -82,23 +92,43 @@ const PostSearchControl = ({
 
 			<div className="wpbt-post-search-control__options">
 				{isExpanded && (
-					<Options
-						options={filteredPosts}
-						search={debouncedSearch}
-						renderOption={(post) => (
-							<button
-								key={post.id}
-								className="wpbt-post-search-control__option"
-								onClick={() => {
-									onChange(post.id);
-									setSearch("");
-									setIsExpanded(false);
-								}}
-							>
-								<RawHTML>{post?.title?.rendered}</RawHTML>
-							</button>
+					<>
+						<Options
+							options={filteredPosts}
+							search={debouncedSearch}
+							renderOption={(post) => (
+								<button
+									key={post.id}
+									className="wpbt-post-search-control__option"
+									onClick={() => {
+										onChange(post.id);
+										setSearch("");
+										setIsExpanded(false);
+									}}
+								>
+									<RawHTML>{post?.title?.rendered}</RawHTML>
+								</button>
+							)}
+						/>
+
+						{maybeHasMorePosts && (
+							<div className="wpbt-post-search-control__more">
+								{isLoadingMore ? (
+									<Spinner />
+								) : (
+									<button
+										className="components-button is-tertiary"
+										onClick={() => {
+											setIsLoadingMore(true);
+											setPerPage(-1);
+										}}
+									>
+										{__("View more results", textdomain)}
+									</button>
+								)}
+							</div>
 						)}
-					/>
+					</>
 				)}
 			</div>
 		</BaseControl>

@@ -3,11 +3,12 @@
  */
 import { useSelect } from "@wordpress/data";
 
-export function usePostSearch(
+export function usePostSearch({
 	postType = "post",
 	search = "",
-	minimumLength = 3
-) {
+	minimumLength = 3,
+	perPage = 20,
+}) {
 	const posts = useSelect(
 		(select) => {
 			if (search.length < minimumLength) {
@@ -15,14 +16,14 @@ export function usePostSearch(
 			}
 
 			return select("core").getEntityRecords("postType", postType, {
-				per_page: -1,
+				per_page: perPage,
 				orderby: "title",
 				order: "asc",
 				status: "publish",
 				search,
 			});
 		},
-		[postType, search, minimumLength]
+		[postType, search, minimumLength, perPage]
 	);
 
 	return posts;
