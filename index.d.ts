@@ -1,60 +1,61 @@
-import React from 'react';
+import React from "react";
 
 type BlockNames = string[];
 
 /**
  * Components
  */
-export const InlineNotice: React.FC< {
-	status: 'warning' | 'error';
-	size: 'regular' | 'small';
-} > = props;
+export const InlineNotice: React.FC<{
+	status: "warning" | "error";
+	size: "regular" | "small";
+}> = props;
 
-export const PostControl: React.FC< {
+export const PostControl: React.FC<{
 	label: string;
 	posts: any[];
 	value: number;
-	onChange: ( ...args: any[] ) => any;
-} > = props;
+	onChange: (...args: any[]) => any;
+}> = props;
 
-export const RequireBlocks: React.FC< {
+export const RequireBlocks: React.FC<{
 	blocks: BlockNames;
-} > = props;
+}> = props;
 
-export const SortablePostsControl: React.FC< {
+export const SortablePostsControl: React.FC<{
 	label: string;
 	posts: any[];
 	value: number[];
-	onChange: ( ...args: any[] ) => any;
-} > = props;
+	onChange: (...args: any[]) => any;
+}> = props;
 
-export const TaxonomyControl: React.FC< {
+export const TaxonomyControl: React.FC<{
 	label: string;
 	taxonomies: any[];
 	value: any[];
-	onChange: ( ...args: any[] ) => any;
-} > = props;
+	onChange: (...args: any[]) => any;
+}> = props;
 
-export const PostSearchControl: React.FC< {
+export const PostSearchControl: React.FC<{
 	type: string;
 	value: number;
-	onChange: ( ...args: any[] ) => any;
+	onChange: (...args: any[]) => any;
 	placeholder: string;
 	label: string;
 	inputProps: object;
-} > = props;
+	filterResults: (results: any[]) => any[];
+}> = props;
 
 /**
  * Hooks
  */
 
-export function useAllPosts( postType: string ): any[];
+export function useAllPosts(postType: string): any[];
 
-export function useRequiredBlocks( requiredBlocks: BlockNames ): {
+export function useRequiredBlocks(requiredBlocks: BlockNames): {
 	missingBlocks: BlockNames;
 	hasRequiredBlocks: boolean;
 };
 
-export function usePost( postType: string, id: number ): any;
+export function usePost(postType: string, id: number): any;
 
-export function usePostSearch( postType: string, search: string ): any[];
+export function usePostSearch(postType: string, search: string): any[];

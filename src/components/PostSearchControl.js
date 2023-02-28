@@ -33,6 +33,7 @@ const PostSearchControl = ({
 	placeholder = __("Search", textdomain),
 	label = __("Select a post", textdomain),
 	inputProps = {},
+	filterResults = null,
 	...rest
 }) => {
 	const [isExpanded, setIsExpanded] = useState(false);
@@ -42,6 +43,8 @@ const PostSearchControl = ({
 	const selected = usePost(type, value);
 
 	const posts = usePostSearch(type, debouncedSearch, SEARCH_MINIMUM_LENGTH);
+
+	const filteredPosts = filterResults ? filterResults(posts) : posts;
 
 	const onKeyDown = (e) => {
 		if (e.key === "Escape") {
@@ -80,7 +83,7 @@ const PostSearchControl = ({
 			<div className="wpbt-post-search-control__options">
 				{isExpanded && (
 					<Options
-						options={posts}
+						options={filteredPosts}
 						search={debouncedSearch}
 						renderOption={(post) => (
 							<button

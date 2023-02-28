@@ -1,28 +1,43 @@
 /**
  * External dependencies
  */
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import classnames from 'classnames';
+import {
+	DndContext,
+	closestCenter,
+	KeyboardSensor,
+	PointerSensor,
+	useSensor,
+	useSensors,
+} from "@dnd-kit/core";
+import {
+	arrayMove,
+	SortableContext,
+	sortableKeyboardCoordinates,
+	verticalListSortingStrategy,
+	useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import classnames from "classnames";
 
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
-import { BaseControl, Spinner } from '@wordpress/components';
+import { __ } from "@wordpress/i18n";
+import { useState, useEffect } from "@wordpress/element";
+import { BaseControl, Spinner } from "@wordpress/components";
 
 /**
  * Internal dependencies
  */
-import config from '../config.json';
-import { arrayMove, postToControlOption } from '../utils';
+import config from "../config.json";
+import { postToControlOption } from "../utils";
 
 const SortablePostsControl = ({ label, posts, value, onChange }) => {
 	const { textdomain } = config;
 
 	const [options, setOptions] = useState([]);
 	const [filteredOptions, setFilteredOptions] = useState([]);
-	const [query, setQuery] = useState('');
+	const [query, setQuery] = useState("");
 
 	useEffect(() => {
 		if (posts) {
@@ -52,8 +67,8 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 		);
 	};
 
-	const onSortEnd = ({ oldIndex, newIndex }) => {
-		onChange(arrayMove(value, oldIndex, newIndex));
+	const onSortEnd = (newValues) => {
+		onChange(newValues);
 	};
 
 	const onItemRemove = (option) => {
@@ -71,27 +86,27 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 	}, []);
 
 	return (
-		<BaseControl label={label} className='wpbt-sortable-posts-control'>
-			<h4 className='wpbt-sortable-posts-control__subtitle'>
-				{__('Select posts', textdomain)}
+		<BaseControl label={label} className="wpbt-sortable-posts-control">
+			<h4 className="wpbt-sortable-posts-control__subtitle">
+				{__("Select posts", textdomain)}
 			</h4>
 
 			<input
-				type='text'
-				placeholder={__('Search', textdomain)}
+				type="text"
+				placeholder={__("Search", textdomain)}
 				value={query}
 				onChange={(event) => setQuery(event.target.value)}
-				className='wpbt-sortable-posts-control__search'
+				className="wpbt-sortable-posts-control__search"
 			/>
 
-			<div className='wpbt-sortable-posts-control__list'>
+			<div className="wpbt-sortable-posts-control__list">
 				{filteredOptions.map((option, index) => {
 					const isSelected = value.find((id) => id === option.value);
 
 					const optionClassName = classnames(
-						'wpbt-sortable-posts-control__option',
+						"wpbt-sortable-posts-control__option",
 						{
-							'is-selected': isSelected,
+							"is-selected": isSelected,
 						}
 					);
 
@@ -107,44 +122,106 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 				})}
 			</div>
 
-			<h4 className='wpbt-sortable-posts-control__subtitle'>
-				{__('Select order', textdomain)}
+			<h4 className="wpbt-sortable-posts-control__subtitle">
+				{__("Select order", textdomain)}
 			</h4>
-			<div className='wpbt-sortable-posts-control__list'>
-				<SortableList
-					items={sortableOptions}
-					onSortEnd={onSortEnd}
-					distance={5}
-					onItemRemove={onItemRemove}
-				/>
-			</div>
+
+			<SortableList
+				items={sortableOptions}
+				setItems={onSortEnd}
+				onItemRemove={onItemRemove}
+			/>
 		</BaseControl>
 	);
 };
 
-const SortableItem = SortableElement(({ value, onRemove }) => (
-	<div className='wpbt-sortable-posts-control__sortable-item'>
-		<span>{value.label}</span>
-		<div
-			className='wpbt-sortable-posts-control__sortable-remove'
-			onClick={() => onRemove(value)}
-		/>
-	</div>
-));
+const SortableItem = ({ id, value, onRemove, isDragging }) => {
+	const { attributes, listeners, setNodeRef, transform, transition } =
+		useSortable({ id });
 
-const SortableList = SortableContainer(({ items, onItemRemove }) => {
+	const style = {
+		transform: CSS.Transform.toString({
+			x: 0,
+			y: transform?.y,
+			scaleX: 1,
+			scaleY: 1,
+		}),
+		transition,
+	};
+
 	return (
-		<div className='wpbt-sortable-posts-control__sortable-list'>
-			{items.map((item, index) => (
-				<SortableItem
-					key={`item-${item.value}`}
-					index={index}
-					value={item}
-					onRemove={onItemRemove}
+		<div
+			className="wpbt-sortable-posts-control__sortable-item"
+			ref={setNodeRef}
+			style={style}
+		>
+			<span {...attributes} {...listeners}>
+				{value.label}
+			</span>
+			{!isDragging && (
+				<div
+					className="wpbt-sortable-posts-control__sortable-remove"
+					onClick={() => onRemove(value)}
 				/>
-			))}
+			)}
 		</div>
 	);
-});
+};
+
+const SortableList = ({ items, setItems, onItemRemove }) => {
+	const [isDragging, setIsDragging] = useState(false);
+
+	const sensors = useSensors(
+		useSensor(PointerSensor),
+		useSensor(KeyboardSensor, {
+			coordinateGetter: sortableKeyboardCoordinates,
+		})
+	);
+
+	const handleDragStart = (event) => {
+		setIsDragging(true);
+	};
+
+	const handleDragEnd = (event) => {
+		setIsDragging(false);
+
+		const { active, over } = event;
+
+		if (active.id !== over.id) {
+			setItems((items) => {
+				const oldIndex = items.indexOf(active.id);
+				const newIndex = items.indexOf(over.id);
+
+				return arrayMove(items, oldIndex, newIndex);
+			});
+		}
+	};
+
+	return (
+		<div className="wpbt-sortable-posts-control__list">
+			<DndContext
+				sensors={sensors}
+				collisionDetection={closestCenter}
+				onDragStart={handleDragStart}
+				onDragEnd={handleDragEnd}
+			>
+				<SortableContext items={items} strategy={verticalListSortingStrategy}>
+					<div className="wpbt-sortable-posts-control__sortable-list">
+						{items.map((item, index) => (
+							<SortableItem
+								key={`item-${item.value}`}
+								id={item.value}
+								index={index}
+								value={item}
+								onRemove={onItemRemove}
+								isDragging={isDragging}
+							/>
+						))}
+					</div>
+				</SortableContext>
+			</DndContext>
+		</div>
+	);
+};
 
 export default SortablePostsControl;

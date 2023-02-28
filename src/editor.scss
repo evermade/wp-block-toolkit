@@ -84,27 +84,36 @@
 
 	&__sortable-list {
 		position: relative;
+		width: 100%;
+		height: 100%;
 	}
 
 	&__sortable-item {
 		position: relative;
-		padding-top: 3px;
-		padding-bottom: 3px;
 		cursor: move;
 		user-select: none;
+
+		span {
+			display: block;
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
 
 		&:hover {
 			.wpbt-sortable-posts-control__sortable-remove {
 				visibility: visible;
 			}
 		}
+	}
 
-		// Prevent "remove" buttons from showing while dragging
-		&[style*=":"] {
-			.wpbt-sortable-posts-control__sortable-remove {
-				visibility: hidden;
-			}
-		}
+	&__active-item {
+		position: relative;
+		padding: 3px 5px;
+		cursor: move;
+		user-select: none;
+		background-color: rgba(#fff, 0.9);
+		border: dashed 1px #000;
+		border-radius: 5px;
 	}
 
 	&__sortable-remove {

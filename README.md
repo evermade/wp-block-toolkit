@@ -58,8 +58,9 @@ For selecting a single post from a large pool of posts. More performant than `Po
 			mySelectedPageId: value,
 		})
 	}
-	inputProps={{
-		autoFocus: true
+	filterResults={(results) => {
+		// You can modify the search results before returning them.
+		return results;
 	}}
 />
 ```
@@ -153,6 +154,11 @@ const loremIpsumStories = usePostSearch("story", "lorem ipsum");
 ```
 
 ## Changelog
+
+### 4.0.0
+- Breaking change: Updated @wordpress/scripts to [25.4.0](https://github.com/WordPress/gutenberg/blob/trunk/packages/scripts/CHANGELOG.md#2540-2023-02-15), which also introduces React 18.
+- Changed `react-sortable-hoc` which is no longer maintained and compatible with React 18 to `@dnd-kit/core`.
+- Added possibility to filter `PostSearchControl` results via the `filterResults` prop.
 
 ### 3.1.1
 
