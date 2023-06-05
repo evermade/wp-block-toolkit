@@ -109,9 +109,9 @@ Similar to the default WordPress category selector, shows a filterable list of c
 
 ```javascript
 <TaxonomyControl
-	label={"My Label"}
+	slug="category"
+	label="My Label"
 	value={mySelectedTaxonomies}
-	taxonomies={myTaxonomies}
 	onChange={(value) => setAttributes({ mySelectedTaxonomies: value })}
 />
 ```
@@ -157,6 +157,11 @@ const loremIpsumStories = usePostSearch({ postType: "story", search: "lorem ipsu
 ```
 
 ## Changelog
+
+### 5.0.0
+
+- Breaking change: Changed the way `TaxonomyControl` is used. It now takes just the taxonomy slug instead of an array of terms.
+- Breaking change: Updated dependencies to the latest versions.
 
 ### 4.1.0
 

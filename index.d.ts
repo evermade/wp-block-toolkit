@@ -29,8 +29,8 @@ export const SortablePostsControl: React.FC<{
 }> = props;
 
 export const TaxonomyControl: React.FC<{
+	slug: string;
 	label: string;
-	taxonomies: any[];
 	value: any[];
 	onChange: (...args: any[]) => any;
 }> = props;

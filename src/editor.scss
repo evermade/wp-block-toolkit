@@ -23,16 +23,48 @@
 }
 
 .wpbt-checkbox-wrapper {
-	height: 200px;
+	height: 250px;
 	overflow: auto;
-	padding-left: 4;
+	padding-left: 4px;
+	margin-left: -4px;
 
-	> .components-base-control {
-		margin-bottom: 5px;
+	.components-base-control {
+		margin-bottom: 3px;
 
 		.components-checkbox-control__label > div {
 			display: inline;
 		}
+	}
+
+	> ul ul {
+		margin-left: 16px;
+	}
+
+	li ul {
+		margin-bottom: 10px;
+	}
+}
+
+.wbpt-tag-list {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 3px;
+}
+
+.wbpt-removable-tag {
+	font-size: 10px;
+	border-radius: 9999px;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 4px;
+	padding: 3px 7px 3px 10px;
+
+	&::after {
+		content: '×';
+		opacity: 0.5;
 	}
 }
 
