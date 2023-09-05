@@ -259,3 +259,11 @@ const loremIpsumStories = usePostSearch({
 ### 0.1.0
 
 - Initial release
+
+## Development
+
+* Update version in `package.json`
+* Commit to master
+* Set tag with version number to git
+* Create new release in GitHub
+* NPM package is automatically published from GitHub
