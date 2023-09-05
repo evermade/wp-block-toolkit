@@ -153,10 +153,17 @@ Similar to `useAllPosts`, except uses a search parameter for the query. Much mor
 It's recommended to debounce the search string, to avoid excessive database queries.
 
 ```javascript
-const loremIpsumStories = usePostSearch({ postType: "story", search: "lorem ipsum" });
+const loremIpsumStories = usePostSearch({
+	postType: "story",
+	search: "lorem ipsum",
+});
 ```
 
 ## Changelog
+
+### 5.0.1
+
+- Fixed an issue where `SortablePostsControl` didn't work properly with `setAttributes` of WordPress. Now always returns a sorted list of ids instead of a callback when sorted.
 
 ### 5.0.0
 

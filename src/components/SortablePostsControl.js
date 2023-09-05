@@ -128,7 +128,7 @@ const SortablePostsControl = ({ label, posts, value, onChange }) => {
 
 			<SortableList
 				items={sortableOptions}
-				setItems={onSortEnd}
+				onChange={onSortEnd}
 				onItemRemove={onItemRemove}
 			/>
 		</BaseControl>
@@ -168,7 +168,7 @@ const SortableItem = ({ id, value, onRemove, isDragging }) => {
 	);
 };
 
-const SortableList = ({ items, setItems, onItemRemove }) => {
+const SortableList = ({ items, onChange, onItemRemove }) => {
 	const [isDragging, setIsDragging] = useState(false);
 
 	const sensors = useSensors(
@@ -188,12 +188,12 @@ const SortableList = ({ items, setItems, onItemRemove }) => {
 		const { active, over } = event;
 
 		if (active.id !== over.id) {
-			setItems((items) => {
-				const oldIndex = items.indexOf(active.id);
-				const newIndex = items.indexOf(over.id);
+			const ids = items.map((item) => item.value);
+			const oldIndex = ids.indexOf(active.id);
+			const newIndex = ids.indexOf(over.id);
+			const newIds = arrayMove(ids, oldIndex, newIndex);
 
-				return arrayMove(items, oldIndex, newIndex);
-			});
+			onChange(newIds);
 		}
 	};
 
