@@ -5,6 +5,7 @@ import { useSelect } from "@wordpress/data";
 
 export function usePostSearch({
 	postType = "post",
+	postStatus = "publish",
 	search = "",
 	minimumLength = 3,
 	perPage = 20,
@@ -19,7 +20,7 @@ export function usePostSearch({
 				per_page: perPage,
 				orderby: "title",
 				order: "asc",
-				status: "publish",
+				status: postStatus,
 				search,
 			});
 		},

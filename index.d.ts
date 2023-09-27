@@ -37,6 +37,7 @@ export const TaxonomyControl: React.FC<{
 
 export const PostSearchControl: React.FC<{
 	type: string;
+	status: string;
 	value: number;
 	onChange: (...args: any[]) => any;
 	placeholder: string;

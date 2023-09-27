@@ -28,6 +28,7 @@ const SEARCH_MINIMUM_LENGTH = 3;
 
 const PostSearchControl = ({
 	type = "post",
+	status = "publish",
 	value = 0,
 	onChange,
 	placeholder = __("Search", textdomain),
@@ -47,6 +48,7 @@ const PostSearchControl = ({
 
 	const posts = usePostSearch({
 		postType: type,
+		postStatus: status,
 		search: debouncedSearch,
 		minimumLength: SEARCH_MINIMUM_LENGTH,
 		perPage,
