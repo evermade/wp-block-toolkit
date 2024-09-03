@@ -161,6 +161,14 @@ const loremIpsumStories = usePostSearch({
 
 ## Changelog
 
+### 5.0.3
+
+- Fixed a rare issue where `PostSearchControl`'s reset button became full width when used inside a medium size `Placeholder` component.
+
+### 5.0.2
+
+- Add support for post status in `PostSearchControl`.
+
 ### 5.0.1
 
 - Fixed an issue where `SortablePostsControl` didn't work properly with `setAttributes` of WordPress. Now always returns a sorted list of ids instead of a callback when sorted.
@@ -262,8 +270,8 @@ const loremIpsumStories = usePostSearch({
 
 ## Development
 
-* Update version in `package.json`
-* Commit to master
-* Set tag with version number to git
-* Create new release in GitHub
-* NPM package is automatically published from GitHub
+- Update version in `package.json`
+- Commit to master
+- Set tag with version number to git
+- Create new release in GitHub
+- NPM package is automatically published from GitHub
