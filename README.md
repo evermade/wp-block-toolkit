@@ -161,6 +161,10 @@ const loremIpsumStories = usePostSearch({
 
 ## Changelog
 
+### 6.0.0
+
+- Updated npm dependencies
+
 ### 5.0.3
 
 - Fixed a rare issue where `PostSearchControl`'s reset button became full width when used inside a medium size `Placeholder` component.
