@@ -16,9 +16,6 @@ import { closeSmall } from "@wordpress/icons";
  */
 import { usePost } from "../hooks/use-post";
 import { usePostSearch } from "../hooks/use-post-search";
-import config from "../config.json";
-
-const { textdomain } = config;
 
 /**
  * Constants
@@ -31,8 +28,8 @@ const PostSearchControl = ({
 	status = "publish",
 	value = 0,
 	onChange,
-	placeholder = __("Search", textdomain),
-	label = __("Select a post", textdomain),
+	placeholder = __("Search", "wp-block-toolkit"),
+	label = __("Select a post", "wp-block-toolkit"),
 	inputProps = {},
 	filterResults = null,
 	numOfInitialResults = 20,
@@ -125,7 +122,7 @@ const PostSearchControl = ({
 											setPerPage(-1);
 										}}
 									>
-										{__("View more results", textdomain)}
+										{__("View more results", "wp-block-toolkit")}
 									</button>
 								)}
 							</div>
@@ -161,13 +158,15 @@ const Options = ({ options, search, renderOption }) => {
 				<p>
 					{__(
 						`Your search needs to be at least ${SEARCH_MINIMUM_LENGTH} characters long.`,
-						textdomain
+						"wp-block-toolkit",
 					)}
 				</p>
 			);
 		}
 
-		return <p>{__("No posts were found with your search.", textdomain)}</p>;
+		return (
+			<p>{__("No posts were found with your search.", "wp-block-toolkit")}</p>
+		);
 	}
 
 	return options.map(renderOption);

@@ -9,7 +9,6 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import config from "../config.json";
 import { labelWithCount } from "../utils";
 
 const TaxonomyControl = ({ slug, label, value, onChange }) => {
@@ -26,7 +25,7 @@ const TaxonomyControl = ({ slug, label, value, onChange }) => {
 				per_page: -1,
 			});
 		},
-		[slug]
+		[slug],
 	);
 
 	const isLoading = data === null;
@@ -105,7 +104,7 @@ const TaxonomyControl = ({ slug, label, value, onChange }) => {
 					<Spinner />
 				) : !hasTaxonomies ? (
 					<p>
-						{__(`No taxonomies of type "${slug}" found.`, config?.textdomain)}
+						{__(`No taxonomies of type "${slug}" found.`, "wp-block-toolkit")}
 					</p>
 				) : (
 					<CheckboxGroup
@@ -150,7 +149,7 @@ const SearchInput = ({ value, onChange }) => {
 		<div className="wpbt-search-input">
 			<input
 				type="text"
-				placeholder={__("Search", config?.textdomain)}
+				placeholder={__("Search", "wp-block-toolkit")}
 				value={value}
 				onChange={onChange}
 			/>

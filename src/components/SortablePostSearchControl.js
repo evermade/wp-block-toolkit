@@ -31,7 +31,18 @@ import { BaseControl, Spinner } from "@wordpress/components";
  */
 import { postToControlOption } from "../utils";
 
-const SortablePostsControl = ({ label, posts, value, onChange }) => {
+const SortablePostSearchControl = ({
+	type = "post",
+	status = "publish",
+	value,
+	onChange,
+	placeholder = __("Search", "wp-block-toolkit"),
+	label = __("Select a post", "wp-block-toolkit"),
+	inputProps = {},
+	filterResults = null,
+	numOfInitialResults = 20,
+	...rest
+}) => {
 	const [options, setOptions] = useState([]);
 	const [filteredOptions, setFilteredOptions] = useState([]);
 	const [query, setQuery] = useState("");
@@ -221,4 +232,4 @@ const SortableList = ({ items, onChange, onItemRemove }) => {
 	);
 };
 
-export default SortablePostsControl;
+export default SortablePostSearchControl;

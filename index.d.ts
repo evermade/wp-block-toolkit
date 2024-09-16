@@ -8,32 +8,44 @@ type BlockNames = string[];
 export const InlineNotice: React.FC<{
 	status: "warning" | "error";
 	size: "regular" | "small";
-}> = props;
+}>;
 
 export const PostControl: React.FC<{
 	label: string;
 	posts: any[];
 	value: number;
 	onChange: (...args: any[]) => any;
-}> = props;
+}>;
 
 export const RequireBlocks: React.FC<{
 	blocks: BlockNames;
-}> = props;
+}>;
 
 export const SortablePostsControl: React.FC<{
 	label: string;
 	posts: any[];
 	value: number[];
 	onChange: (...args: any[]) => any;
-}> = props;
+}>;
+
+export const SortablePostSearchControl: React.FC<{
+	type: string;
+	status: string;
+	value: number[];
+	onChange: (...args: any[]) => any;
+	placeholder: string;
+	label: string;
+	inputProps: object;
+	filterResults: (results: any[]) => any[];
+	numOfInitialResults: number;
+}>;
 
 export const TaxonomyControl: React.FC<{
 	slug: string;
 	label: string;
 	value: any[];
 	onChange: (...args: any[]) => any;
-}> = props;
+}>;
 
 export const PostSearchControl: React.FC<{
 	type: string;
@@ -45,7 +57,7 @@ export const PostSearchControl: React.FC<{
 	inputProps: object;
 	filterResults: (results: any[]) => any[];
 	numOfInitialResults: number;
-}> = props;
+}>;
 
 /**
  * Hooks
