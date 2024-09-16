@@ -10,6 +10,7 @@ import InlineNotice from "./components/InlineNotice";
 import PostControl from "./components/PostControl";
 import RequireBlocks from "./components/RequireBlocks";
 import SortablePostsControl from "./components/SortablePostsControl";
+import SortablePostSearchControl from "./components/SortablePostSearchControl";
 import TaxonomyControl from "./components/TaxonomyControl";
 import PostSearchControl from "./components/PostSearchControl";
 
@@ -26,6 +27,7 @@ export {
 	PostControl,
 	RequireBlocks,
 	SortablePostsControl,
+	SortablePostSearchControl,
 	TaxonomyControl,
 	PostSearchControl,
 	useAllPosts,

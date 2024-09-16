@@ -101,6 +101,31 @@ Select and sort multiple posts, with search filtering. Takes an array of post ob
 />
 ```
 
+### SortablePostSearchControl
+
+Select and sort multiple posts, by searching from a large pool of posts. Takes an array of post ids as value and returns the same on change.
+
+![SortablePostsControl example](assets/SortablePostsControl-screenshot-01.png)
+
+```javascript
+<SortablePostSearchControl
+	type="page"
+	label="Choose pages"
+	placeholder="Search here"
+	value={mySelectedPageIds}
+	onChange={(value) =>
+		setAttributes({
+			mySelectedPageIds: value,
+		})
+	}
+	numOfInitialResults={20}
+	filterResults={(results) => {
+		// You can modify the search results before returning them.
+		return results;
+	}}
+/>
+```
+
 ### TaxonomyControl
 
 Similar to the default WordPress category selector, shows a filterable list of checkboxes.
@@ -160,6 +185,11 @@ const loremIpsumStories = usePostSearch({
 ```
 
 ## Changelog
+
+### 6.1.0
+
+- Refactored the way textdomain is used and removed config.json.
+- Introduced `SortablePostSearchControl`.
 
 ### 6.0.0
 
