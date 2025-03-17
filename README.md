@@ -44,6 +44,12 @@ For example instead of `src` it uses an `url` prop etc.
 />
 ```
 
+If you use an image object saved from the MediaUpload flow, you can simply do:
+
+```javascript
+<Image {...attributes.myImage} />
+```
+
 ### ImageControl
 
 Simple image upload and replacement flow for managing media.
