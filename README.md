@@ -18,7 +18,7 @@ Compliments the base WordPress notice system by allowing you to show either warn
 
 ```javascript
 <InlineNotice status="error">
-	<strong>Error: </strong> Lorem ipsum dolor sit amet.
+  <strong>Error: </strong> Lorem ipsum dolor sit amet.
 </InlineNotice>
 ```
 
@@ -30,14 +30,14 @@ Custom ComboboxControl for selecting a single post. Takes an array of post objec
 
 ```javascript
 <PostControl
-	label="My Label"
-	value={mySelectedPostId}
-	posts={myPosts}
-	onChange={(value) =>
-		setAttributes({
-			mySelectedPostId: value,
-		})
-	}
+  label="My Label"
+  value={mySelectedPostId}
+  posts={myPosts}
+  onChange={(value) =>
+    setAttributes({
+      mySelectedPostId: value,
+    })
+  }
 />
 ```
 
@@ -51,20 +51,20 @@ As a further performance optimization, by default shows only 20 results and a "V
 
 ```javascript
 <PostSearchControl
-	type="page"
-	label="Choose a page"
-	placeholder="Search here"
-	value={mySelectedPageId}
-	onChange={(value) =>
-		setAttributes({
-			mySelectedPageId: value,
-		})
-	}
-	numOfInitialResults={20}
-	filterResults={(results) => {
-		// You can modify the search results before returning them.
-		return results;
-	}}
+  type="page"
+  label="Choose a page"
+  placeholder="Search here"
+  value={mySelectedPageId}
+  onChange={(value) =>
+    setAttributes({
+      mySelectedPageId: value,
+    })
+  }
+  numOfInitialResults={20}
+  filterResults={(results) => {
+    // You can modify the search results before returning them.
+    return results;
+  }}
 />
 ```
 
@@ -76,9 +76,9 @@ Allows you to only show components if certain blocks are installed and activated
 
 ```javascript
 <RequireBlocks blocks={["core/paragraph", "my-namespace/my-custom-block"]}>
-	<h2>My title</h2>
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-	<MyComponent />
+  <h2>My title</h2>
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+  <MyComponent />
 </RequireBlocks>
 ```
 
@@ -90,14 +90,14 @@ Select and sort multiple posts, with search filtering. Takes an array of post ob
 
 ```javascript
 <SortablePostsControl
-	label={"My Label"}
-	posts={myPosts}
-	value={mySelectedPosts}
-	onChange={(value) =>
-		setAttributes({
-			mySelectedPosts: value,
-		})
-	}
+  label={"My Label"}
+  posts={myPosts}
+  value={mySelectedPosts}
+  onChange={(value) =>
+    setAttributes({
+      mySelectedPosts: value,
+    })
+  }
 />
 ```
 
@@ -109,20 +109,20 @@ Select and sort multiple posts, by searching from a large pool of posts. Takes a
 
 ```javascript
 <SortablePostSearchControl
-	type="page"
-	label="Choose pages"
-	placeholder="Search here"
-	value={mySelectedPageIds}
-	onChange={(value) =>
-		setAttributes({
-			mySelectedPageIds: value,
-		})
-	}
-	numOfInitialResults={20}
-	filterResults={(results) => {
-		// You can modify the search results before returning them.
-		return results;
-	}}
+  type="page"
+  label="Choose pages"
+  placeholder="Search here"
+  value={mySelectedPageIds}
+  onChange={(value) =>
+    setAttributes({
+      mySelectedPageIds: value,
+    })
+  }
+  numOfInitialResults={20}
+  filterResults={(results) => {
+    // You can modify the search results before returning them.
+    return results;
+  }}
 />
 ```
 
@@ -134,10 +134,10 @@ Similar to the default WordPress category selector, shows a filterable list of c
 
 ```javascript
 <TaxonomyControl
-	slug="category"
-	label="My Label"
-	value={mySelectedTaxonomies}
-	onChange={(value) => setAttributes({ mySelectedTaxonomies: value })}
+  slug="category"
+  label="My Label"
+  value={mySelectedTaxonomies}
+  onChange={(value) => setAttributes({ mySelectedTaxonomies: value })}
 />
 ```
 
@@ -158,8 +158,8 @@ Checks if the listed block names are installed and activated on the site. Also r
 
 ```javascript
 const { missingBlocks, hasRequiredBlocks } = useRequiredBlocks([
-	"core/paragraph",
-	"core/image",
+  "core/paragraph",
+  "core/image",
 ]);
 ```
 
@@ -179,12 +179,16 @@ It's recommended to debounce the search string, to avoid excessive database quer
 
 ```javascript
 const loremIpsumStories = usePostSearch({
-	postType: "story",
-	search: "lorem ipsum",
+  postType: "story",
+  search: "lorem ipsum",
 });
 ```
 
 ## Changelog
+
+### 7.0.0
+
+- Updated npm dependencies
 
 ### 6.1.0
 
