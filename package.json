@@ -39,7 +39,8 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "classnames": "^2.5.1",
-    "use-debounce": "^10.0.4"
+    "use-debounce": "^10.0.4",
+    "lodash": "^4.17.21"
   },
   "homepage": "https://github.com/evermade/wp-block-toolkit#readme",
   "publishConfig": {

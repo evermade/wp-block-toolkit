@@ -10,6 +10,25 @@ To include the editor styles, add this to the top of your block's `_editor.scss`
 
 ## Components
 
+### ImageControl
+
+Simple image upload and replacement flow for managing media.
+
+By setting the `showPreview` prop to `false`, you can build a custom image preview component.
+
+![ImageControl example](assets/ImageControl-screenshot-01.png);
+
+![ImageControl example](assets/ImageControl-screenshot-02.png);
+
+```javascript
+<ImageControl
+  id={myImageId}
+  onSelect={(image) => setAttributes({ myImageId: image.id })}
+  onRemove={() => setAttributes({ myImageId: undefined })}
+  showPreview={true}
+/>
+```
+
 ### InlineNotice
 
 Compliments the base WordPress notice system by allowing you to show either warning or error level notices inside the editor.
@@ -184,11 +203,75 @@ const loremIpsumStories = usePostSearch({
 });
 ```
 
+## Utils
+
+Usage:
+
+```
+import { utils } from '@evermade/wp-block-toolkit';
+```
+
+### utils.postToControlOption
+
+Normalize a WP post to work as a select type control option.
+
+### utils.labelWithCount
+
+Basic label string with count in parenthesis.
+
+### utils.pickImageProps
+
+Pick typical relevant image props from a WordPress MediaUpload object.
+
+## Advanced Examples
+
+### Handling Media Object
+
+If you need more than just the id, you can use the following flow for managing a media object.
+
+In your block's `block.json`, add an object type attribute:
+
+```json
+{
+  "attributes": {
+    "myImage": {
+      "type": "object"
+    }
+  }
+}
+```
+
+In your block's edit, you'll need to extract the id when rendering the ImageControl component and pick the relevant properties for storage on save.
+
+```javascript
+import { ImageControl, utils } from "@evermade/wp-block-toolkit";
+
+export default function Edit({ attributes, setAttributes }) {
+  return (
+    <ImageControl
+      id={attributes.myImage.id}
+      onSelect={(image) =>
+        setAttributes({
+          myImage: utils.pickImageProps(image),
+        })
+      }
+      onRemove={() =>
+        setAttributes({
+          myImage: undefined,
+        })
+      }
+    />
+  );
+}
+```
+
 ## Changelog
 
 ### 7.0.0
 
 - Updated npm dependencies
+- Introduced `ImageControl` component.
+- Exported utils. Added `pickImageProps` util for use with ImageControl component.
 
 ### 6.1.0
 

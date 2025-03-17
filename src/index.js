@@ -6,6 +6,7 @@ import "./editor.scss";
 /**
  * Components
  */
+import { ImageControl } from "./components/ImageControl";
 import InlineNotice from "./components/InlineNotice";
 import PostControl from "./components/PostControl";
 import RequireBlocks from "./components/RequireBlocks";
@@ -22,16 +23,23 @@ import { useRequiredBlocks } from "./hooks/use-required-blocks";
 import { usePost } from "./hooks/use-post";
 import { usePostSearch } from "./hooks/use-post-search";
 
+/**
+ * Utils
+ */
+import * as utils from "./utils";
+
 export {
-	InlineNotice,
-	PostControl,
-	RequireBlocks,
-	SortablePostsControl,
-	SortablePostSearchControl,
-	TaxonomyControl,
-	PostSearchControl,
-	useAllPosts,
-	useRequiredBlocks,
-	usePost,
-	usePostSearch,
+  ImageControl,
+  InlineNotice,
+  PostControl,
+  RequireBlocks,
+  SortablePostsControl,
+  SortablePostSearchControl,
+  TaxonomyControl,
+  PostSearchControl,
+  useAllPosts,
+  useRequiredBlocks,
+  usePost,
+  usePostSearch,
+  utils,
 };
