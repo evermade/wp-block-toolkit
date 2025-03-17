@@ -10,6 +10,40 @@ To include the editor styles, add this to the top of your block's `_editor.scss`
 
 ## Components
 
+### FocalPointImage
+
+Purely presentational component, which helps work with the `FocalPointPicker` from `@wordpress/components`.
+
+Renders a standard `<img />` element from data received from the MediaUpload flow. See `<Image>` below for all available props.
+
+```javascript
+<FocalPointImage
+  url="https://..."
+  focalPoint={{
+    x: 0.5,
+    y: 0.5,
+  }}
+/>
+```
+
+### Image
+
+Simple presentational component, which renders a standard `<img />` element from data format which is received from the MediaUpload flow.
+
+For example instead of `src` it uses an `url` prop etc.
+
+```javascript
+<Image
+  id={myImageId}
+  url="https://..."
+  alt="My alt text"
+  width={1600}
+  height={900}
+  title="My title text"
+  loading="lazy"
+/>
+```
+
 ### ImageControl
 
 Simple image upload and replacement flow for managing media.
@@ -265,7 +299,95 @@ export default function Edit({ attributes, setAttributes }) {
 }
 ```
 
+### Image Control with Focal Point Picker
+
+This flow describes how to setup image media management with a focal point picker:
+
+![Image Control with Focal Point Picker example](assets/ImageControlWithFocalPointPicker-screenshot-01.png)
+
+First, you need two attributes for your block's `block.json`:
+
+```json
+{
+  "attributes": {
+    "myImage": {
+      "type": "object"
+    },
+    "myFocalPoint": {
+      "type": "object"
+    }
+  }
+}
+```
+
+In your block's `edit.js`, use `ImageControl` from this toolkit and `FocalPointPicker` from `@wordpress/components`.
+
+Note how we disable the preview of ImageControl with `showPreview` set to `false`. This allows us to replace it with the focal point picker control after a media item has been selected.
+
+Whenever the media item is removed, we also reset the focal point.
+
+Then use `FocalPointImage` from this toolkit to render the positioned image result.
+
+```javascript
+import {
+  ImageControl,
+  FocalPointImage,
+  utils,
+} from "@evermade/wp-block-toolkit";
+
+import { FocalPointPicker } from "@wordpress/components";
+import { InspectorControls } from "@wordpress/block-editor";
+import { Fragment } from "@wordpress/element";
+
+export default function Edit({ attributes, setAttributes }) {
+  const { myImage, myFocalPoint } = attributes;
+
+  return (
+    <Fragment>
+      <InspectorControls>
+        {myImage && (
+          <FocalPointPicker
+            url={myImage?.url}
+            value={myFocalPoint}
+            onChange={(newFocalPoint) =>
+              setAttributes({
+                myFocalPoint: newFocalPoint,
+              })
+            }
+          />
+        )}
+
+        <ImageControl
+          id={myImage?.id}
+          showPreview={false}
+          onSelect={(image) =>
+            setAttributes({
+              myImage: utils.pickImageProps(image),
+            })
+          }
+          onRemove={() =>
+            setAttributes({
+              myImage: undefined,
+              myFocalPoint: undefined,
+            })
+          }
+        />
+      </InspectorControls>
+
+      <div className="my-block">
+        {myImage && <FocalPointImage {...myImage} focalPoint={myFocalPoint} />}
+      </div>
+    </Fragment>
+  );
+}
+```
+
 ## Changelog
+
+### 7.1.0
+
+- Fixed `ImageControl` export to default.
+- Added `Image` and `FocalPointImage` presentational components.
 
 ### 7.0.0
 

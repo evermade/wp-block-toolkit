@@ -5,6 +5,27 @@ type BlockNames = string[];
 /**
  * Components
  */
+type ImageProps = {
+  id: number;
+  url: string;
+  alt: string;
+  width: number;
+  height: number;
+  title: string;
+  loading: "lazy" | "eager";
+};
+
+export const FocalPointImage: React.FC<
+  ImageProps & {
+    focalPoint: {
+      x: number;
+      y: number;
+    };
+  }
+>;
+
+export const Image: React.FC<ImageProps>;
+
 export const ImageControl: React.FC<{
   id: number;
   fallback: string;

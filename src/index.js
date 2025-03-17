@@ -6,7 +6,9 @@ import "./editor.scss";
 /**
  * Components
  */
-import { ImageControl } from "./components/ImageControl";
+import FocalPointImage from "./components/FocalPointImage";
+import Image from "./components/Image";
+import ImageControl from "./components/ImageControl";
 import InlineNotice from "./components/InlineNotice";
 import PostControl from "./components/PostControl";
 import RequireBlocks from "./components/RequireBlocks";
@@ -29,6 +31,8 @@ import { usePostSearch } from "./hooks/use-post-search";
 import * as utils from "./utils";
 
 export {
+  FocalPointImage,
+  Image,
   ImageControl,
   InlineNotice,
   PostControl,

@@ -12,7 +12,7 @@ import { useSelect } from "@wordpress/data";
 import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { Fragment } from "@wordpress/element";
 
-export const ImageControl = ({
+const ImageControl = ({
   id,
   fallback = __(
     "You don't have permission to upload media.",
@@ -97,3 +97,5 @@ export const ImageControl = ({
     </div>
   );
 };
+
+export default ImageControl;
