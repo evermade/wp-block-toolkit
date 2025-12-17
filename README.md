@@ -390,6 +390,10 @@ export default function Edit({ attributes, setAttributes }) {
 
 ## Changelog
 
+### 8.0.0
+
+- Updated npm dependencies
+
 ### 7.1.0
 
 - Fixed `ImageControl` export to default.
