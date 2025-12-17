@@ -390,6 +390,10 @@ export default function Edit({ attributes, setAttributes }) {
 
 ## Changelog
 
+### 8.0.1
+
+- Bump up node versions
+
 ### 8.0.0
 
 - Updated npm dependencies
